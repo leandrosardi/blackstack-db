@@ -1,4 +1,5 @@
-require_relative '../lib/blackstack-db'
+require 'blackstack-db'
+#require_relative '../lib/blackstack-db'
 
 # DB ACCESS - KEEP IT SECRET
 # Connection string to the demo database: export DATABASE_URL='postgresql://demo:<ENTER-SQL-USER-PASSWORD>@free-tier14.aws-us-east-1.cockroachlabs.cloud:26257/mysaas?sslmode=verify-full&options=--cluster%3Dmysaas-demo-6448'

@@ -1,4 +1,5 @@
-require_relative '../lib/blackstack-db'
+require 'blackstack-db'
+#require_relative '../lib/blackstack-db'
 
 # DB ACCESS - KEEP IT SECRET
 # 
