@@ -28,6 +28,8 @@ gem install blackstack-db
 
 The `connect` method returns a [Sequel](https://sequel.jeremyevans.net/) database object.
 
+Refer to [this document](https://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html) to know how to handle a Sequel connection.
+
 ```ruby
 require 'blackstack-db'
 
@@ -51,6 +53,8 @@ p guid
 ## 3. Connecting CockroachDB
 
 The `connect` method returns a [Sequel](https://sequel.jeremyevans.net/) database object.
+
+Refer to [this document](https://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html) to know how to handle a Sequel connection.
 
 ```ruby
 require 'blackstack-db'
