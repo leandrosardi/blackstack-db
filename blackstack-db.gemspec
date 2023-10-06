@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'blackstack-core'
+  s.name        = 'blackstack-db'
   s.version     = '1.0.1'
   s.date        = '2023-10-06'
   s.summary     = "Modules for simple setup of database connections."
