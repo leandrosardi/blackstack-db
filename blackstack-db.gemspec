@@ -1,24 +1,17 @@
 Gem::Specification.new do |s|
   s.name        = 'blackstack-core'
-  s.version     = '1.2.14'
-  s.date        = '2023-08-17'
-  s.summary     = "THIS GEM IS STILL IN DEVELOPMENT STAGE. Core classes, functions and constants for the BlackStack framework."
-  s.description = "THIS GEM IS STILL IN DEVELOPMENT STAGE. Find documentation here: https://github.com/leandrosardi/blackstack-core."
+  s.version     = '1.0.1'
+  s.date        = '2023-10-06'
+  s.summary     = "Modules for simple setup of database connections."
+  s.description = "Modules for simple setup of database connections: https://github.com/leandrosardi/blackstack-db."
   s.authors     = ["Leandro Daniel Sardi"]
-  s.email       = 'leandro.sardi@expandedventure.com'
+  s.email       = 'leandro@connectionsphere.com'
   s.files       = [
-    "lib/blackstack-core.rb",
-    "lib/extend_datetime.rb",
-    "lib/extend_exception.rb",
-    "lib/extend_fixnum.rb",
-    "lib/extend_float.rb",
-    "lib/extend_string.rb",
-    "lib/extend_time.rb",
-    "lib/functions.rb",
-    "examples/example01.rb",
-    "examples/example02.rb",    
+    "lib/blackstack-db/crdb.rb",
+    "lib/blackstack-db/postgresql.rb",
+    "lib/blackstack-db.rb",
   ]
-  s.homepage    = 'https://rubygems.org/gems/blackstack-core'
+  s.homepage    = 'https://rubygems.org/gems/blackstack-db'
   s.license     = 'MIT'
   s.add_runtime_dependency 'sequel', '~> 5.56.0', '>= 5.56.0'
 end
