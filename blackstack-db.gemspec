@@ -21,5 +21,4 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://rubygems.org/gems/blackstack-core'
   s.license     = 'MIT'
   s.add_runtime_dependency 'sequel', '~> 5.56.0', '>= 5.56.0'
-  s.add_runtime_dependency 'simple_cloud_logging', '~> 1.2.2', '>= 1.2.2'
 end

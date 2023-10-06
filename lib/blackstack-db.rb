@@ -1,5 +1,4 @@
 require 'sequel'
-require 'simple_cloud_logging'
 require_relative './blackstack-db/postgresql.rb'
 require_relative './blackstack-db/crdb.rb'
 
