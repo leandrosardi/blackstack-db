@@ -140,14 +140,13 @@ module BlackStack
             # This validation checks the connection to the correct database.
             begin
                 l.logs "Verify database name... "
-                s = @db["SHOW DATABASES"].first.to_s
-                raise 'Wrong database name' if s !~ /:database_name=>\"#{Regexp.escape(BlackStack::CRDB::db_name)}\"/i
+                s = @db["SHOW DATABASES"].all.map { |x| x[:database_name] }.join("\n")
+                raise 'Wrong database name'.red if s !~ /#{Regexp.escape(BlackStack::CRDB::db_name)}/i
                 l.logf "success".green
             rescue => e
                 l.logf "failed".red
                 l.log e.message
             end
-        end
-
+        end # test
     end # module CRDB
 end # module BlackStack
