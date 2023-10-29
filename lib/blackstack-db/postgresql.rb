@@ -97,7 +97,7 @@ module BlackStack
             tz = 'America/Argentina/Buenos_Aires' #DB["SELECT current_setting('TIMEZONE') AS tz"].first[:tz]
             DB["SELECT (current_timestamp - interval '#{n} seconds') at TIME ZONE '#{tz}' AS now"].first[:now]
         end
-=begin
+
         # test the connection to the database.
         # raise an exception if the connection fails, or if any incongruence is found.
         def self.test(l=nil)
@@ -112,9 +112,9 @@ module BlackStack
                 @db = BlackStack::Deployer::DB::connect(
                     BlackStack::PostgreSQL::connection_string # use the connection parameters setting in ./config.rb
                 )
-                l.logf "success"
+                l.logf "success".green
             rescue => e
-                l.logf "failed"
+                l.logf "failed".red
                 l.log e.message
             end
             
@@ -122,14 +122,14 @@ module BlackStack
             # This validation checks the connection to the correct database.
             begin
                 l.logs "Verify database name... "
-                s = @db["SHOW DATABASES"].first.to_s
+                s = @db["SELECT datname FROM pg_database"].first.to_s
                 raise 'Wrong database name' if s !~ /:database_name=>\"#{Regexp.escape(BlackStack::PostgreSQL::db_name)}\"/i
-                l.logf "success"
+                l.logf "success".green
             rescue => e
-                l.logf "failed"
+                l.logf "failed".red
                 l.log e.message
             end
         end
-=end
+
     end # module PostgreSQL
 end
