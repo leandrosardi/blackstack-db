@@ -66,6 +66,9 @@ module BlackStack
             # validate: the :db_password key must be a string
             raise 'The key :db_password must be a string' unless h[:db_password].is_a?(String)
 
+            # set type
+            BlackStack::set_db_type(BlackStack::TYPE_POSTGRESQL)
+
             # map values
             @@db_url = h[:db_url]
             @@db_port = h[:db_port].to_i
