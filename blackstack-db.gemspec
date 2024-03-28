@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'blackstack-db'
-  s.version     = '1.0.6'
-  s.date        = '2024-03-27'
+  s.version     = '1.0.7'
+  s.date        = '2024-03-28'
   s.summary     = "Modules for simple setup of database connections."
   s.description = "Modules for simple setup of database connections: https://github.com/leandrosardi/blackstack-db."
   s.authors     = ["Leandro Daniel Sardi"]
