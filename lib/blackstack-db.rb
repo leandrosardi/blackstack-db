@@ -17,6 +17,16 @@ module BlackStack
         @@db_type
     end # db_type
 
+    def self.connection_string
+        if @@db_type == TYPE_POSTGRESQL
+            return BlackStack::PostgreSQL.connection_string
+        elsif @@db_type == TYPE_CRDB
+            return BlackStack::CRDB.connection_string
+        else
+            raise "Unknown database type"
+        end
+    end # connection_string
+
     def self.db_connect
         if @@db_type == TYPE_POSTGRESQL
             return BlackStack::PostgreSQL.connect
