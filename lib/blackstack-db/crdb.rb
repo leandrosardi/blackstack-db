@@ -130,9 +130,7 @@ module BlackStack
             
             l.logs "Testing connection... "
             begin
-                @db = BlackStack::Deployer::DB::connect(
-                    BlackStack::CRDB::connection_string # use the connection parameters setting in ./config.rb
-                )
+                @db = BlackStack::CRDB::connect
                 l.logf "success".green
             rescue => e
                 l.logf "failed".red

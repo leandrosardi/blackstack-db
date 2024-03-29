@@ -80,7 +80,8 @@ module BlackStack
         # create database connection
         def self.connect
             BlackStack::set_db_type(BlackStack::TYPE_POSTGRESQL)
-            Sequel.connect(BlackStack::PostgreSQL.connection_string)
+            s = BlackStack::PostgreSQL.connection_string
+            Sequel.connect(s)
         end
 
         # return a postgresql uuid
@@ -112,9 +113,7 @@ module BlackStack
             
             l.logs "Testing connection... "
             begin
-                @db = BlackStack::Deployer::DB::connect(
-                    BlackStack::PostgreSQL::connection_string # use the connection parameters setting in ./config.rb
-                )
+                @db = BlackStack::PostgreSQL::connect
                 l.logf "success".green
             rescue => e
                 l.logf "failed".red
@@ -125,8 +124,8 @@ module BlackStack
             # This validation checks the connection to the correct database.
             begin
                 l.logs "Verify database name... "
-                s = @db["SELECT datname FROM pg_database"].first[:datname]
-                raise 'Wrong database name' if s !~ /#{Regexp.escape(BlackStack::PostgreSQL::db_name)}/i
+                s = @db["SELECT datname FROM pg_database WHERE datname='#{BlackStack::PostgreSQL::db_name}'"].first
+                raise 'Wrong database name' if s.nil?
                 l.logf "success".green
             rescue => e
                 l.logf "failed".red

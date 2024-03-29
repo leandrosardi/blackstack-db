@@ -37,7 +37,7 @@ module BlackStack
         end
     end
 
-    def self.test(l=nil)
+    def self.db_test(l=nil)
         if @@db_type == TYPE_POSTGRESQL
             return BlackStack::PostgreSQL.test(l)
         elsif @@db_type == TYPE_CRDB
