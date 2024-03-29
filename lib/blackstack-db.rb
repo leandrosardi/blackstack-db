@@ -37,6 +37,16 @@ module BlackStack
         end
     end
 
+    def self.test(l=nil)
+        if @@db_type == TYPE_POSTGRESQL
+            return BlackStack::PostgreSQL.test(l)
+        elsif @@db_type == TYPE_CRDB
+            return BlackStack::CRDB.test(l)
+        else
+            raise "Unknown database type"
+        end
+    end # test
+
 end # BlackStack
 
 # return a postgresql uuid

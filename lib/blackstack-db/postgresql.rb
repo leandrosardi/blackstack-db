@@ -125,8 +125,8 @@ module BlackStack
             # This validation checks the connection to the correct database.
             begin
                 l.logs "Verify database name... "
-                s = @db["SELECT datname FROM pg_database"].first.to_s
-                raise 'Wrong database name' if s !~ /:database_name=>\"#{Regexp.escape(BlackStack::PostgreSQL::db_name)}\"/i
+                s = @db["SELECT datname FROM pg_database"].first[:datname]
+                raise 'Wrong database name' if s !~ /#{Regexp.escape(BlackStack::PostgreSQL::db_name)}/i
                 l.logf "success".green
             rescue => e
                 l.logf "failed".red
