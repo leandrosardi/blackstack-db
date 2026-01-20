@@ -42,6 +42,7 @@ BlackStack::PostgreSQL::set_db_params({
   :db_user => 'blackstack', 
   :db_password => '*****',
   :db_sslmode => 'disable',
+  :max_connections => 20, # optional, sets Sequel connection pool size
 })
 
 DB = BlackStack::PostgreSQL.connect

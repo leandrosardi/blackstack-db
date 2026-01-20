@@ -6,6 +6,7 @@ module BlackStack
         @@db_name = nil
         @@db_user = nil
         @@db_password = nil
+        @@db_max_connections = nil
 
         # return the connection string for a postgresql database
         def self.connection_string
@@ -27,6 +28,9 @@ module BlackStack
         end
         def self.db_password
             @@db_password
+        end
+        def self.db_max_connections
+            @@db_max_connections
         end
 
         def self.set_db_params(h)
@@ -50,6 +54,15 @@ module BlackStack
 
             # validate: the db_password key is required
             raise 'The key :db_password is required' unless h.has_key?(:db_password)
+
+                        # validate: optional :max_connections key
+                        if h.has_key?(:max_connections)
+                            value = h[:max_connections]
+                            unless value.is_a?(Integer) || (value.is_a?(String) && value.to_i.to_s == value)
+                                raise 'The key :max_connections must be an integer'
+                            end
+                            raise 'The key :max_connections must be greater than zero' unless value.to_i > 0
+                        end
 
             # validate: the :db_url key must be a string
             raise 'The key :db_url must be a string' unless h[:db_url].is_a?(String)
@@ -75,13 +88,16 @@ module BlackStack
             @@db_name = h[:db_name]
             @@db_user = h[:db_user]
             @@db_password = h[:db_password]
+            @@db_max_connections = h[:max_connections] ? h[:max_connections].to_i : nil
         end # set_db_params
 
         # create database connection
         def self.connect
             BlackStack::set_db_type(BlackStack::TYPE_POSTGRESQL)
             s = BlackStack::PostgreSQL.connection_string
-            Sequel.connect(s)
+            opts = {}
+            opts[:max_connections] = @@db_max_connections if @@db_max_connections
+            Sequel.connect(s, **opts)
         end
 
         # return a postgresql uuid
